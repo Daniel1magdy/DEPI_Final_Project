@@ -45,33 +45,7 @@ pipeline {
             }
         }
 
-       # stage('Deploy with Ansible') {
-     #       steps {
-      #          script {
-       #             // Run the Ansible playbook to deploy the app
-        #            sh 'ansible-playbook -i hosts deploy.yml'
-         #       }
-      #      }
-      #  }
-
-       # stage('Apply Monitoring with Prometheus') {
-        #    steps {
-         #       script {
-          #          // Add commands to apply Prometheus monitoring
-           #         // For example, you could run a script or deploy Prometheus to the server
-            #        sh './deploy-prometheus.sh'
-    #            }
-     #       }
-      #  }
-
-       # stage('Clean Up') {
-        #    steps {
-         #       script {
-          #          // Clean up Docker images
-           #         sh 'docker system prune -f'
-            #    }
-           # }
-      #  }
+        
     }
 
     post {
