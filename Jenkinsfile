@@ -9,10 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    // Clone the GitHub repository
-                    git 'https://github.com/Daniel1magdy/DEPI_Final_Project.git'
-                }
+                checkout scm
             }
         }
 
