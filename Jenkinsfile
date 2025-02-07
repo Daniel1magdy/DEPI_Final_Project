@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKER_CREDENTIALS_ID = 'docker-credentials'
+    }
     stages {
         // Checkout the code
         stage('Checkout') {
@@ -29,7 +33,7 @@ pipeline {
                     sh 'docker build -t danielmagdy/newone:latest .'
                     
                     // Log into DockerHub (using credentials)
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDENTIALS_ID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                         sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                     }
                     
