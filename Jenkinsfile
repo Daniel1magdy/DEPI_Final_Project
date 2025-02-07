@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Clone the GitHub repository
-                    git 'https://github.com/Omareldeeb7/Final_Project.git'
+                    git 'https://github.com/Daniel1magdy/DEPI_Final_Project.git'
                 }
             }
         }
@@ -45,33 +45,33 @@ pipeline {
             }
         }
 
-        stage('Deploy with Ansible') {
-            steps {
-                script {
-                    // Run the Ansible playbook to deploy the app
-                    sh 'ansible-playbook -i hosts deploy.yml'
-                }
-            }
-        }
+       # stage('Deploy with Ansible') {
+     #       steps {
+      #          script {
+       #             // Run the Ansible playbook to deploy the app
+        #            sh 'ansible-playbook -i hosts deploy.yml'
+         #       }
+      #      }
+      #  }
 
-        stage('Apply Monitoring with Prometheus') {
-            steps {
-                script {
-                    // Add commands to apply Prometheus monitoring
-                    // For example, you could run a script or deploy Prometheus to the server
-                    sh './deploy-prometheus.sh'
-                }
-            }
-        }
+       # stage('Apply Monitoring with Prometheus') {
+        #    steps {
+         #       script {
+          #          // Add commands to apply Prometheus monitoring
+           #         // For example, you could run a script or deploy Prometheus to the server
+            #        sh './deploy-prometheus.sh'
+    #            }
+     #       }
+      #  }
 
-        stage('Clean Up') {
-            steps {
-                script {
-                    // Clean up Docker images
-                    sh 'docker system prune -f'
-                }
-            }
-        }
+       # stage('Clean Up') {
+        #    steps {
+         #       script {
+          #          // Clean up Docker images
+           #         sh 'docker system prune -f'
+            #    }
+           # }
+      #  }
     }
 
     post {
