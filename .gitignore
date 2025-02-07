@@ -1,11 +1,1 @@
-/target
-/.settings
-/.classpath
-/.project
-/.idea
-*.iml
-/build
-.mvn/wrapper/maven-wrapper.jar
-*.releaseBackup
-*.properties
-.env
+
