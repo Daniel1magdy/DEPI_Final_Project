@@ -2,45 +2,61 @@ pipeline {
     agent any
 
     environment {
+        DOCKER_IMAGE = 'danielmagdy/final_project:latest'
         DOCKER_CREDENTIALS_ID = 'docker-credentials'
     }
+
     stages {
-        // Checkout the code
         stage('Checkout') {
             steps {
-                checkout scm
+                script {
+                    // Clone the GitHub repository
+                    git 'https://github.com/Daniel1magdy/DEPI_Final_Project.git'
+                }
             }
         }
-        
-        // Build the Java application using Maven
-        stage('Build & Test') {
+
+        stage('Build and Test') {
             steps {
                 script {
-                    // Run mvn clean package to build the .war file
-                    sh './mvnw clean package'
+                    // Build the project using Maven
+                    sh './mvnw clean package -DskipTests'
                     
                     // Run tests using Maven
                     sh './mvnw test'
                 }
             }
         }
-        
-        // Dockerize the application
-        stage('Dockerize') {
+
+        stage('Dockerize Application') {
             steps {
                 script {
-                    // Build Docker image
-                    sh 'docker build -t danielmagdy/newone:latest .'
-                    
-                    // Log into DockerHub (using credentials)
+                    // Build Docker image and tag it
+                    sh 'docker build -t $DOCKER_IMAGE .'
+
+                    // Login to DockerHub (using Jenkins credentials)
                     withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDENTIALS_ID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                         sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                     }
-                    
-                    // Push Docker image to DockerHub
-                    sh 'docker push danielmagdy/newone:latest'
+
+                    // Push the Docker image to DockerHub
+                    sh 'docker push $DOCKER_IMAGE'
                 }
             }
         }
+
+        
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed. Please check the logs for errors.'
+        }
     }
 }
+
+
