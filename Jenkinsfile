@@ -13,18 +13,6 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
-            steps {
-                script {
-                    // Build the project using Maven
-                    sh './mvnw clean package -DskipTests'
-                    
-                    // Run tests using Maven
-                    sh './mvnw test'
-                }
-            }
-        }
-
         stage('Dockerize Application') {
             steps {
                 script {
