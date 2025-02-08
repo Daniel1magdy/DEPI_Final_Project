@@ -16,7 +16,7 @@ This is a Java web app that needs to have an automated CI/CD using the DevOps to
 
 ## The Steps
 
-1- CI/CD pipeline that do as following 
+CI/CD pipeline that do as following 
 
 CI:
 - Clone the source code.
@@ -40,3 +40,5 @@ Github repo containes
 This application build is resulting a .war file not .jar as we saw before. This needs a change in the command that is used to run the application. We will use mvnw as well to run the application as shown below. Here's the command used to run the app:
 
 ./mvnw cargo:run -P tomcat90
+
+## Thank You.
