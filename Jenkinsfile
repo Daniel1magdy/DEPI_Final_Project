@@ -4,8 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'danielmagdy/final_project:latest'
         DOCKER_CREDENTIALS_ID = 'DOCKER_CREDENTIALS_ID'
-	ANSIBLE_BECOME_PASSWORD = '123'
-        }
+	}
 
     stages {
         stage('Checkout') {
