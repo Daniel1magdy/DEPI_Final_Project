@@ -2,6 +2,8 @@
 - name: Deploy Java Web App using Docker
   hosts: local
   become: yes
+  become_user: root  # Run tasks as root (optional)
+
   tasks:
     - name: Install Docker (if not installed)
       apt:
@@ -20,6 +22,7 @@
         name: danielmagdy/final_project
         tag: latest
         source: pull
+        force: yes
 
     - name: Run the Docker container
       docker_container:
