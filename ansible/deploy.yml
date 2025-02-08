@@ -2,6 +2,9 @@
 - name: Deploy Java Web App using Docker
   hosts: local
   become: yes
+  become_method: sudo
+  become_user: root
+  become_password: 123
   gather_facts: no
 
   tasks:
