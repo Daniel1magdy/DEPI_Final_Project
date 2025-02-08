@@ -43,8 +43,6 @@ pipeline {
             }
         }
 
-    }
-
     stage('Deploy with Ansible') {
             steps {
                 script {
