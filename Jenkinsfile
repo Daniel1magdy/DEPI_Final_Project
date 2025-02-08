@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     // Run the Ansible playbook to deploy the app
-                    sh 'ansible-playbook -i $ANSIBLE_INVENTORY deploy.yml'
+                    sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
                 }
             }
         }
