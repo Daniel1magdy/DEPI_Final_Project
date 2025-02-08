@@ -4,8 +4,8 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'danielmagdy/final_project:latest'
         DOCKER_CREDENTIALS_ID = 'DOCKER_CREDENTIALS_ID'
-	ANSIBLE_INVENTORY = 'inventory.ini'
-    }
+	ANSIBLE_BECOME_PASSWORD = '123'
+        }
 
     stages {
         stage('Checkout') {
@@ -46,14 +46,14 @@ pipeline {
     stage('Deploy with Ansible') {
             steps {
                 script {
+		    withEnv(['ANSIBLE_BECOME_PASSWORD=123']) {
                     // Run the Ansible playbook to deploy the app
                     sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
                 }
             }
         }
-
-        
     }
+  }
 
     post {
         success {
