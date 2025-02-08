@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'danielmagdy/final_project:latest'
-        DOCKER_CREDENTIALS_ID = 'docker-credentials'
+        DOCKER_CREDENTIALS_ID = 'DOCKER_CREDENTIALS_ID'
     }
 
     stages {
