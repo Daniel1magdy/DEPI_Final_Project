@@ -2,7 +2,7 @@
 - name: Deploy Java Web App using Docker
   hosts: local
   become: yes
-  become_user: root  # Run tasks as root (optional)
+  gather_facts: no
 
   tasks:
     - name: Install Docker (if not installed)
@@ -22,14 +22,13 @@
         name: danielmagdy/final_project
         tag: latest
         source: pull
-        force: yes
+        state: present
 
     - name: Run the Docker container
       docker_container:
         name: java-web-app
-        image: danielmagdy/final_project
+        image: danielmagdy/final_project:latest
         state: started
         restart_policy: always
-        published_ports:
+        ports:
           - "8080:8080"
-
