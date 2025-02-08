@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'danielmagdy/final_project:latest'
         DOCKER_CREDENTIALS_ID = 'DOCKER_CREDENTIALS_ID'
+	ANSIBLE_INVENTORY = 'inventory.ini'
     }
 
     stages {
@@ -42,6 +43,18 @@ pipeline {
             }
         }
 
+    }
+
+    stage('Deploy with Ansible') {
+            steps {
+                script {
+                    // Run the Ansible playbook to deploy the app
+                    sh 'ansible-playbook -i $ANSIBLE_INVENTORY deploy.yml'
+                }
+            }
+        }
+
+        
     }
 
     post {
