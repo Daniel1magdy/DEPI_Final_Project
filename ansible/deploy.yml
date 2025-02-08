@@ -21,12 +21,6 @@
         tag: latest
         source: pull
 
-    - name: Stop any running container with the same name (if any)
-      docker_container:
-        name: java-web-app
-        state: stopped
-        remove: yes
-
     - name: Run the Docker container
       docker_container:
         name: java-web-app
