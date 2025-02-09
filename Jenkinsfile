@@ -45,7 +45,7 @@ pipeline {
     stage('Deploy with Ansible') {
             steps {
                 script {
-		    withEnv(['ANSIBLE_BECOME_PASSWORD=123']) {
+		    // withEnv(['ANSIBLE_BECOME_PASSWORD=123']) {
                     // Run the Ansible playbook to deploy the app
                     sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
                 }
