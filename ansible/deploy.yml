@@ -1,6 +1,6 @@
 ---
 - name: Deploy Java Web App using Docker
-  hosts: all
+  hosts: local
   become: yes
   gather_facts: no
 
