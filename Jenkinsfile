@@ -42,6 +42,15 @@ pipeline {
             }
         }
 
+	stage('Set Key Permissions') {
+  	  steps {
+     	   script {
+            sh 'chmod 600 Danielkey.pem'
+    	    }
+   	 }
+	}
+    
+
     stage('Deploy with Ansible') {
             steps {
                 script {
