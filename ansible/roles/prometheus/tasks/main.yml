@@ -1,0 +1,70 @@
+---
+- name: Create Prometheus directory
+  file:
+    path: /opt/prometheus
+    state: directory
+
+- name: Download Prometheus
+  get_url:
+    url: "https://github.com/prometheus/prometheus/releases/download/v2.51.2/prometheus-2.51.2.linux-amd64.tar.gz"
+    dest: /tmp/prometheus.tar.gz
+    mode: '0644'
+
+- name: Extract Prometheus
+  unarchive:
+    src: /tmp/prometheus.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: Rename Prometheus directory
+  command: mv /opt/prometheus-2.51.2.linux-amd64 /opt/prometheus
+  args:
+    creates: /opt/prometheus/prometheus
+
+- name: Copy Prometheus config
+  template:
+    src: prometheus.yml.j2
+    dest: /opt/prometheus/prometheus.yml
+  notify: Restart Prometheus
+
+- name: Copy Prometheus systemd service
+  template:
+    src: prometheus.service.j2
+    dest: /etc/systemd/system/prometheus.service
+  notify: Restart Prometheus
+
+- name: Enable and start Prometheus
+  systemd:
+    name: prometheus
+    enabled: yes
+    state: started
+
+- name: Download Node Exporter
+  get_url:
+    url: "https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz"
+    dest: /tmp/node_exporter.tar.gz
+    mode: '0644'
+
+- name: Extract Node Exporter
+  unarchive:
+    src: /tmp/node_exporter.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: Rename Node Exporter directory
+  command: mv /opt/node_exporter-1.7.0.linux-amd64 /opt/node_exporter
+  args:
+    creates: /opt/node_exporter/node_exporter
+
+- name: Copy Node Exporter service file
+  template:
+    src: node_exporter.service.j2
+    dest: /etc/systemd/system/node_exporter.service
+  notify: Restart Node Exporter
+
+- name: Enable and start Node Exporter
+  systemd:
+    name: node_exporter
+    enabled: yes
+    state: started
+
