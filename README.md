@@ -2,7 +2,7 @@
 
 ## Description 
 
-This is a Java web app that needs to have an automated CI/CD using the DevOps toolset. The Application is running as a container on the same VM on port 8080.
+This is a Java web app that needs to have an automated CI/CD using the DevOps toolset. The Application is running as a container on the same VM on port 8080, Test the application by visiting this URL http://localhost:8080/jpetstore.
 
 ## The used tools
 
