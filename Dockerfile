@@ -5,7 +5,7 @@ FROM tomcat:9-jdk11-openjdk-slim
 WORKDIR /usr/local/tomcat/webapps
 
 # Copy the .war file to the Tomcat webapps folder
-COPY target/jpetstore.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/jpetstore.war /usr/local/tomcat/webapps/jpetstore.war
 
 # Expose port 8080
 EXPOSE 8080
