@@ -8,9 +8,10 @@ This is a Java web app that needs to have an automated CI/CD using the DevOps to
 
 - Git/Github -> clone the code.
 - Maven -> build the code.
-- Docker -> dockerize the app
-- Jenkins -> CI/CD
-- Ansible -> deploy by running a container of the app
+- Docker -> dockerize the app.
+- Jenkins -> CI/CD.
+- Ansible -> deploy by running a container of the app.
+- Prometheus -> monitoring the local machine.
 
 
 ## The Steps
@@ -33,11 +34,5 @@ Github repo containes
 - The Dockerfile
 - The Jenkinsfile
 - The Ansible Playbook
-
-## Note 
-
-This application build is resulting a .war file not .jar as we saw before. This needs a change in the command that is used to run the application. We will use mvnw as well to run the application as shown below. Here's the command used to run the app:
-
-./mvnw cargo:run -P tomcat90
 
 ## Thank You.
