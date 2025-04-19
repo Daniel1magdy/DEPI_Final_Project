@@ -2,7 +2,7 @@
 
 ## Description 
 
-This is a Java web app that needs to have an automated CI/CD using the DevOps toolset. The Application is running as a container on the same VM on port 8080, Test the application by visiting this URL http://localhost:8080/jpetstore.
+This is a Java web app that needs to have an automated CI/CD using the DevOps toolset. The Application is running as a container on the same VM and also on EC2 Instance on port 8080, Test the application by visiting this URL http://localhost:8080/jpetstore.
 
 ## The used tools
 
@@ -12,11 +12,13 @@ This is a Java web app that needs to have an automated CI/CD using the DevOps to
 - Jenkins -> CI/CD.
 - Ansible -> deploy by running a container of the app.
 - Prometheus -> monitoring the local machine.
+- Terraform -> to create the EC2 on AWS
+- AWS -> EC2 machine that shall run the pipeline and host the application
 
 
 ## The Steps
 
-CI/CD pipeline that do as following 
+1- CI/CD pipeline that do as following 
 
 CI:
 - Clone the source code.
@@ -26,7 +28,9 @@ CI:
 
 CD:
 - Deploy the application by running a container from the image using Ansible.
-- Apply the monitoring on the machine using Prometheus. 
+- Apply the monitoring on the machine using Prometheus.
+
+2- Create the EC2 instance using terraform instead of using the local VM (Plus)
 
 
 Github repo containes 
