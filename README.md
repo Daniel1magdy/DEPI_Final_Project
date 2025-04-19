@@ -38,5 +38,6 @@ Github repo containes
 - The Dockerfile
 - The Jenkinsfile
 - The Ansible Playbook
+- Terraform file
 
 ## Thank You.
