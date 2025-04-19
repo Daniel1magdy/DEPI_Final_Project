@@ -30,7 +30,7 @@ CD:
 - Deploy the application by running a container from the image using Ansible.
 - Apply the monitoring on the machine using Prometheus.
 
-2- Create the EC2 instance using terraform instead of using the local VM (Plus)
+2- Create the EC2 instance using terraform and run the pipeline on it instead of using the local VM.
 
 
 Github repo containes 
